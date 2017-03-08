@@ -21,14 +21,15 @@ function getDom(uri, callback) {
 }
 
 function saveContent(children, category, uuid) {
+    var filename = path.resolve(__dirname, '../public/news/' + category + '/a/' + uuid + '.txt');
     children.each(function (i, elem) {
         var str = '';
         str = getData(elem, str, category, uuid);
         if (str !== '')
-            fs.appendFileSync(path.resolve(__dirname, '../public/news/' + category + '/a/' + uuid + '.txt'),
-                str + '\n\n');
+            fs.appendFileSync(filename, str + '\n\n');
     });
-    // todo 整篇都抓不到内容的就不会储存，等读者点开的时候告诉他 not news any more 在删掉数据库里的就好了
+    if(fs.existsSync(filename));
+        // todo 存到数据库
 }
 
 function getData(child, str, category, uuid) {

@@ -1,14 +1,22 @@
 function crawlAll() {
-    crawl('http://sports.qq.com', '/a', 'sports', 10);
-    crawl('http://finance.qq.com', 'http://finance.qq.com/a', 'finance', 10);
-    crawl('http://ent.qq.com', 'http://ent.qq.com/a', 'ent', 10);
-    crawl('http://tech.qq.com', 'http://tech.qq.com/a', 'tech', 10);
-    crawl('http://mil.qq.com/mil_index.htm', 'http://mil.qq.com/a', 'military', 10);
-    crawl('http://news.qq.com/world_index.shtml', 'http://news.qq.com/a', 'world', 10);
-    crawl('http://society.qq.com', 'http://society.qq.com/a', 'local', 10);
+    var count = 10;
+
+    crawlTencent('http://sports.qq.com', '/a', 'sports', count);
+    crawlTencent('http://finance.qq.com', 'http://finance.qq.com/a', 'finance', count);
+    crawlTencent('http://ent.qq.com', 'http://ent.qq.com/a', 'ent', count);
+    crawlTencent('http://tech.qq.com', 'http://tech.qq.com/a', 'tech', count);
+    crawlTencent('http://mil.qq.com/mil_index.htm', 'http://mil.qq.com/a', 'military', count);
+    crawlTencent('http://news.qq.com/world_index.shtml', 'http://news.qq.com/a', 'world', count);
+    crawlTencent('http://society.qq.com', 'http://society.qq.com/a', 'local', count);
+
+    // todo 用来抓其他网站的应该也可以，除了 Cnt-Main-Article-QQ
 }
 
-function crawl(uri, linkPrefix, category, num) {
+function crawlTencent(uri, linkPrefix, category, count) {
+    crawl(uri, linkPrefix, category, count, '腾讯');
+}
+
+function crawl(uri, linkPrefix, category, num, source) {
     var uuidV1 = require('uuid/v1');
     var url = require('url');
     var getDom = require('./util').getDom;
@@ -27,7 +35,7 @@ function crawl(uri, linkPrefix, category, num) {
 
                     count++;
                     if(count > num)
-                        return;
+                        return false;
 
                     console.log(elem.children[0].data.trim());
                     var title = elem.children[0].data.trim();
