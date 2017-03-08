@@ -1,0 +1,130 @@
+-
+    var constants = {
+        COLUMN_NAME: {
+            RECOMMEND: "推荐快讯",
+            SPORTS: "体育新闻",
+            ENTERTAINMENT: "娱乐快报",
+            TECHNOLOGY: "科技前沿",
+            FINANCE: "财经讯息",
+            MILITARY: "军事动态",
+            WORLD: "世界新闻",
+            LOCAL: "本地报道"
+        }
+    };
+    var preference = argPreference ? argPreference : {ALL: true};
+    var active = argActive ? argActive : {};
+    var isLoggedIn = argLoggedIn;
+block arguments
+doctype html
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        meta(http-equiv='X-UA-Compatible', content='IE=edge')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        meta(name='description', content='')
+        meta(name='author', content='yejiongtao')
+        link(rel='icon', href='../../favicon.ico')
+        title License Server
+        // Bootstrap core CSS
+        link(href='/bower_components/bootstrap/dist/css/bootstrap.min.css', rel='stylesheet')
+        // Custom styles for this template
+        link(href='/stylesheets/dashboard.css', rel='stylesheet')
+        // Just for debugging purposes. Don't actually copy these 2 lines!
+        //if lt IE 9
+        //script(src='../../assets/js/ie8-responsive-file-warning.js')
+        //script(src='../../assets/js/ie-emulation-modes-warning.js')
+        // HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
+        //if lt IE 9
+        //  script(src='http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.js')
+        //  script(src='http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js')
+        block additionalHead
+    body
+        nav.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
+            .container-fluid
+                .navbar-header
+                    button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
+                        span.sr-only Toggle navigation
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
+                    a.navbar-brand(href='/verify') News Feeder
+                #navbar.navbar-collapse.collapse
+                    ul.nav.navbar-nav.navbar-right
+                        li
+                            if isLoggedIn
+                                a(href='/logout') Logout
+                            else
+                                a(href='/login') Login
+                    //form.navbar-form.navbar-right
+                    //    input.form-control(type='text', placeholder='Search...')
+        .container-fluid
+            .row
+                .col-sm-3.col-md-2.sidebar
+                    ul.nav.nav-sidebar
+                        if active.RECOMMEND
+                            li.active
+                                a(href='/')= constants.COLUMN_NAME.RECOMMEND
+                        else
+                            li
+                                a(href='/')= constants.COLUMN_NAME.RECOMMEND
+                        if preference.ALL || preference.SPORTS
+                            if active.SPORTS
+                                li.active
+                                    a(href='/')= constants.COLUMN_NAME.SPORTS
+                            else
+                                li
+                                    a(href='/')= constants.COLUMN_NAME.SPORTS
+                        if preference.ALL || preference.ENTERTAINMENT
+                            if active.ENTERTAINMENT
+                                li.active
+                                    a(href='/')= constants.COLUMN_NAME.ENTERTAINMENT
+                            else
+                                li
+                                    a(href='/')= constants.COLUMN_NAME.ENTERTAINMENT
+                        if preference.ALL || preference.TECHNOLOGY
+                            if active.TECHNOLOGY
+                                li.active
+                                    a(href='/')= constants.COLUMN_NAME.TECHNOLOGY
+                            else
+                                li
+                                    a(href='/')= constants.COLUMN_NAME.TECHNOLOGY
+                        if preference.ALL || preference.BUSINESS
+                            if active.BUSINESS
+                                li.active
+                                    a(href='/')= constants.COLUMN_NAME.BUSINESS
+                            else
+                                li
+                                    a(href='/')= constants.COLUMN_NAME.BUSINESS
+                        if preference.ALL || preference.MILITARY
+                            if active.MILITARY
+                                li.active
+                                    a(href='/')= constants.COLUMN_NAME.MILITARY
+                            else
+                                li
+                                    a(href='/')= constants.COLUMN_NAME.MILITARY
+                        if preference.ALL || preference.WORLD
+                            if active.WORLD
+                                li.active
+                                    a(href='/')= constants.COLUMN_NAME.WORLD
+                            else
+                                li
+                                    a(href='/')= constants.COLUMN_NAME.WORLD
+                        if preference.ALL || preference.LOCAL
+                            if active.LOCAL
+                                li.active
+                                    a(href='/')= constants.COLUMN_NAME.LOCAL
+                            else
+                                li
+                                    a(href='/')= constants.COLUMN_NAME.LOCAL
+                .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+                    block content
+        //
+                  Bootstrap core JavaScript
+                  ==================================================
+        // Placed at the end of the document so the pages load faster
+        script(src='/bower_components/jquery/dist/jquery.min.js')
+        script(src='/bower_components/bootstrap/dist/js/bootstrap.min.js')
+        // script(src='../../assets/js/docs.min.js')
+        // IE10 viewport hack for Surface/desktop Windows 8 bug
+        // script(src='../../assets/js/ie10-viewport-bug-workaround.js')
+        block additionalScript

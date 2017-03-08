@@ -1,0 +1,17 @@
+{
+  "name": "news-feeder",
+  "description": "",
+  "main": "",
+  "authors": [
+    "yejiongtao <1183872353@qq.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
