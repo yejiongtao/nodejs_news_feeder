@@ -3,20 +3,57 @@ var cheerio = require('cheerio');
 var iconv = require('iconv-lite');
 var fs = require('fs');
 var path = require('path');
+var async = require('async');
+var url = require('url');
 
-function getDom(uri, callback) {
+var qGetDom = async.queue(function (obj, cb) {
     request.get({
-        uri: uri,
-        encoding: null
+        uri: obj.uri,
+        encoding: null,
+        timeout: 5000
     }, function (err, res, body) {
-        if (err)
-            callback(err);
+        cb();
+
+        if (err) {
+            obj.callback(err);
+            return;
+        }
 
         var contentType = res.headers['content-type'];
-        var charset = contentType.substr(contentType.indexOf('=') + 1);
+        var charset = 'utf-8';
+        if (contentType.indexOf('=') >= 0)
+            charset = contentType.substr(contentType.indexOf('=') + 1);
+
         $ = cheerio.load(iconv.decode(body, charset));
 
-        callback(null, $);
+        obj.callback(null, $);
+    });
+}, 10);
+
+var qGetImg = async.queue(function (obj, cb) {
+    var filename = obj.filename;
+    request.get({
+        uri: obj.uri,
+        timeout: 10000
+    }).on('error', function (err) {
+        fs.unlinkSync(filename);
+        cb();
+    }).pipe(fs.createWriteStream(filename)
+    ).on('close', function () {
+        cb();
+        if (fs.existsSync(filename))
+            fs.rename(filename, path.join(path.dirname(filename), 'done_' + path.basename(filename)),
+                function (err) {
+                    if (err)
+                        throw err;
+                });
+    });
+}, 2);
+
+function getDom(uri, callback) {
+    qGetDom.push({
+        uri: uri,
+        callback: callback
     });
 }
 
@@ -28,26 +65,34 @@ function saveContent(children, category, uuid) {
         if (str !== '')
             fs.appendFileSync(filename, str + '\n\n');
     });
-    if(fs.existsSync(filename));
-        // todo 存到数据库
+    if (fs.existsSync(filename));
+    // todo 存到数据库
 }
 
 function getData(child, str, category, uuid) {
     if (child.name === 'style' || child.name === 'script' || child.name === 'iframe'
-        || child.name === 'div' || child.name === 'ul')
+        || child.name === 'span' || child.name === 'ul' || child.name === 'a' ||
+        child.name === 'ol' || child.name === 'i' || child.name === 'table') // div 不能搞掉，ZAKER 的图片是在 div 里面的
         return str;
 
     if (child.data && child.type !== 'comment')
         str += child.data.trim();
 
     if (child.children)
-        for(var i=0; i < child.children.length; i++)
+        for (var i = 0; i < child.children.length; i++)
             str = getData(child.children[i], str, category, uuid);
 
     if (child.name === 'img') {
         var filename = path.resolve(__dirname, '../public/news/' + category + '/img/' + uuid + '.jpeg');
-        if (!fs.existsSync(filename) && child.attribs.src)
-            request(child.attribs.src).pipe(fs.createWriteStream(filename));
+        if (!fs.existsSync(filename) && (child.attribs.src || child.attribs['data-original'])) {
+            var uri = child.attribs.src ? url.resolve('http://', child.attribs.src) :
+                url.resolve('http://', child.attribs['data-original']);
+            // console.log(uri);
+            qGetImg.push({
+                uri: uri,
+                filename: filename
+            });
+        }
     }
     return str;
 }
