@@ -5,12 +5,15 @@ var fs = require('fs');
 var path = require('path');
 var async = require('async');
 var url = require('url');
+var queryNews = require('../db/news');
+var datetimeFormat = require('../config/constants').datetimeFormat;
+var moment = require('moment');
 
 var qGetDom = async.queue(function (obj, cb) {
     request.get({
         uri: obj.uri,
         encoding: null,
-        timeout: 5000
+        timeout: 10000
     }, function (err, res, body) {
         cb();
 
@@ -28,7 +31,7 @@ var qGetDom = async.queue(function (obj, cb) {
 
         obj.callback(null, $);
     });
-}, 10);
+}, 5);
 
 var qGetImg = async.queue(function (obj, cb) {
     var filename = obj.filename;
@@ -36,7 +39,11 @@ var qGetImg = async.queue(function (obj, cb) {
         uri: obj.uri,
         timeout: 10000
     }).on('error', function (err) {
-        fs.unlinkSync(filename);
+        console.error(err.message, obj.uri);
+        fs.unlink(filename, function (err) {
+            if(err)
+                console.error(err.message);
+        });
         cb();
     }).pipe(fs.createWriteStream(filename)
     ).on('close', function () {
@@ -45,10 +52,10 @@ var qGetImg = async.queue(function (obj, cb) {
             fs.rename(filename, path.join(path.dirname(filename), 'done_' + path.basename(filename)),
                 function (err) {
                     if (err)
-                        throw err;
+                        console.error(err.message);
                 });
     });
-}, 2);
+}, 5);
 
 function getDom(uri, callback) {
     qGetDom.push({
@@ -57,7 +64,7 @@ function getDom(uri, callback) {
     });
 }
 
-function saveContent(children, category, uuid) {
+function saveContent(children, category, uuid, uri, source, title) {
     var filename = path.resolve(__dirname, '../public/news/' + category + '/a/' + uuid + '.txt');
     children.each(function (i, elem) {
         var str = '';
@@ -65,8 +72,18 @@ function saveContent(children, category, uuid) {
         if (str !== '')
             fs.appendFileSync(filename, str + '\n\n');
     });
-    if (fs.existsSync(filename));
-    // todo 存到数据库
+    if (fs.existsSync(filename)) {
+        queryNews.insert('news_' + category, {
+            URI: uri,
+            Source: source,
+            Time:  moment().format(datetimeFormat),
+            Title: title,
+            Filename: uuid
+        }, function (success) {
+            if(!success)
+                console.error('failed to insert to database');
+        })
+    }
 }
 
 function getData(child, str, category, uuid) {

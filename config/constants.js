@@ -17,5 +17,7 @@ module.exports = {
         MILITARY: "军事动态",
         WORLD: "世界新闻",
         LOCAL: "本地报道"
-    }
+    },
+
+    datetimeFormat: 'YYYY-MM-DD HH:mm:ss'
 };
