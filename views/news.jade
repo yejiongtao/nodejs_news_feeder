@@ -1,0 +1,40 @@
+extends layout.jade
+block arguments
+    -
+        var category = argCategory;
+block additionalHead
+    link(href='/bower_components/bootstrap-table/dist/bootstrap-table.min.css' rel='stylesheet')
+block content
+    .table-responsive
+        table#table(data-toggle='table'
+        data-classes="table table-no-bordered"
+        data-url='data'
+        data-pagination="true"
+        data-height="500"
+        data-side-pagination='client'
+        data-page-list="[5, 10, 20, 50, 100, 200]"
+        data-show-header= "false"
+        data-row-style="rowStyle"
+        )
+            thead
+                tr
+                    th(data-formatter='titleFormatter')= 'Title'
+                    th(data-field= 'Source')= 'Source'
+                    th(data-field= 'Time')= 'Time'
+block additionalScript
+    script.
+        function titleFormatter(value, row, index) {
+            return '<a class="name" href="/a/'+ row.Category + '/' + row.Filename + '?title='+ row.Title + '">'
+                + row.Title + '</a>';
+        }
+        function rowStyle(row, index) {
+            /*var classes = ['active', 'success', 'info', 'warning', 'danger'];
+            if (index % 2 === 0 && index / 2 < classes.length) {
+                return {
+                    classes: classes[index / 2]
+                };
+            }
+            return {};*/
+            return index % 2 == 0 ? {classes: 'active'} : {};
+        }
+    script(src='/bower_components/bootstrap-table/dist/bootstrap-table.min.js')

@@ -7,6 +7,8 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var jadeFuncError = require('./views/jadeFuncs').error;
+var news = require('./routes/news');
+var article = require('./routes/article');
 
 var app = express();
 
@@ -24,6 +26,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/bower_components', express.static(path.join(__dirname, 'bower_components')));
 
 app.use('/', index);
+app.use('/news', news);
+app.use('/a', article);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

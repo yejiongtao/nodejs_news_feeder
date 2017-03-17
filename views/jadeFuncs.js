@@ -5,5 +5,9 @@ module.exports = {
     index: jade.compileFile(
         path.resolve(__dirname, 'index.jade')),
     error: jade.compileFile(
-        path.resolve(__dirname, 'error.jade'))
+        path.resolve(__dirname, 'error.jade')),
+    news: jade.compileFile(
+        path.resolve(__dirname, 'news.jade')),
+    article: jade.compileFile(
+        path.resolve(__dirname, 'article.jade'))
 };

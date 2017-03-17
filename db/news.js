@@ -13,4 +13,8 @@ funcs.selectWithURI = function (tableName, uri, callback) {
     queryFuncs.selectWithWhere(tableName, 'URI', uri, callback);
 };
 
+funcs.selectAllDesc = function (tableName, callback) {
+    queryFuncs.selectAllWithOrder(tableName, 'ID', 'desc', callback);
+};
+
 module.exports = funcs;

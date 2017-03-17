@@ -1,0 +1,12 @@
+extends layout
+block arguments
+    -
+        var imgUri = argImgUri;
+        var title = argTitle;
+        var content = argContent;
+block content
+    h3= title
+    pre(style={'white-space': 'pre-wrap'})= content
+    if imgUri
+        div
+            img.img-rounded(src=imgUri style={width: '75%', display: 'block'})

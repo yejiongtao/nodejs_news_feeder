@@ -19,6 +19,11 @@ funcs.selectAll = function(table, callback) {
     select(sql, callback);
 };
 
+funcs.selectAllWithOrder = function (table, orderBy, order, callback) {
+    var sql = 'select * from ' + table + ' order by ' + orderBy + ' ' + order;
+    select(sql, callback);
+};
+
 funcs.selectWithWhere = function (table, field, value, callback) {
     var sql = mysql.format('select * from ' + table + ' where `' + field + '`=?',
         [value]);

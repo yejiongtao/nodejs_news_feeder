@@ -21,7 +21,8 @@ function createTable(db, name) {
         Source: {type: 'string', length: 30},
         Time: {type: 'string', length: 30},
         Title: {type: 'string', length: 100},
-        Filename: {type: 'string', length: 100}
+        Filename: {type: 'string', length: 100},
+        Category: {type: 'string', length: 10}
     });
 }
 

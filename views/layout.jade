@@ -47,7 +47,7 @@ html(lang='en')
                         span.icon-bar
                         span.icon-bar
                         span.icon-bar
-                    a.navbar-brand(href='/verify') News Feeder
+                    a.navbar-brand(href='/') News Feeder
                 #navbar.navbar-collapse.collapse
                     ul.nav.navbar-nav.navbar-right
                         li
@@ -63,59 +63,59 @@ html(lang='en')
                     ul.nav.nav-sidebar
                         if active.RECOMMEND
                             li.active
-                                a(href='/')= constants.COLUMN_NAME.RECOMMEND
+                                a(href='/news/recommend')= constants.COLUMN_NAME.RECOMMEND
                         else
                             li
-                                a(href='/')= constants.COLUMN_NAME.RECOMMEND
+                                a(href='/news/recommend')= constants.COLUMN_NAME.RECOMMEND
                         if preference.ALL || preference.SPORTS
                             if active.SPORTS
                                 li.active
-                                    a(href='/')= constants.COLUMN_NAME.SPORTS
+                                    a(href='/news/sports')= constants.COLUMN_NAME.SPORTS
                             else
                                 li
-                                    a(href='/')= constants.COLUMN_NAME.SPORTS
+                                    a(href='/news/sports')= constants.COLUMN_NAME.SPORTS
                         if preference.ALL || preference.ENTERTAINMENT
                             if active.ENTERTAINMENT
                                 li.active
-                                    a(href='/')= constants.COLUMN_NAME.ENTERTAINMENT
+                                    a(href='/news/ent')= constants.COLUMN_NAME.ENTERTAINMENT
                             else
                                 li
-                                    a(href='/')= constants.COLUMN_NAME.ENTERTAINMENT
+                                    a(href='/news/ent')= constants.COLUMN_NAME.ENTERTAINMENT
                         if preference.ALL || preference.TECHNOLOGY
                             if active.TECHNOLOGY
                                 li.active
-                                    a(href='/')= constants.COLUMN_NAME.TECHNOLOGY
+                                    a(href='/news/tech')= constants.COLUMN_NAME.TECHNOLOGY
                             else
                                 li
-                                    a(href='/')= constants.COLUMN_NAME.TECHNOLOGY
-                        if preference.ALL || preference.BUSINESS
-                            if active.BUSINESS
+                                    a(href='/news/tech')= constants.COLUMN_NAME.TECHNOLOGY
+                        if preference.ALL || preference.FINANCE
+                            if active.FINANCE
                                 li.active
-                                    a(href='/')= constants.COLUMN_NAME.BUSINESS
+                                    a(href='/news/finance')= constants.COLUMN_NAME.FINANCE
                             else
                                 li
-                                    a(href='/')= constants.COLUMN_NAME.BUSINESS
+                                    a(href='/news/finance')= constants.COLUMN_NAME.FINANCE
                         if preference.ALL || preference.MILITARY
                             if active.MILITARY
                                 li.active
-                                    a(href='/')= constants.COLUMN_NAME.MILITARY
+                                    a(href='/news/military')= constants.COLUMN_NAME.MILITARY
                             else
                                 li
-                                    a(href='/')= constants.COLUMN_NAME.MILITARY
+                                    a(href='/news/military')= constants.COLUMN_NAME.MILITARY
                         if preference.ALL || preference.WORLD
                             if active.WORLD
                                 li.active
-                                    a(href='/')= constants.COLUMN_NAME.WORLD
+                                    a(href='/news/world')= constants.COLUMN_NAME.WORLD
                             else
                                 li
-                                    a(href='/')= constants.COLUMN_NAME.WORLD
+                                    a(href='/news/world')= constants.COLUMN_NAME.WORLD
                         if preference.ALL || preference.LOCAL
                             if active.LOCAL
                                 li.active
-                                    a(href='/')= constants.COLUMN_NAME.LOCAL
+                                    a(href='/news/local')= constants.COLUMN_NAME.LOCAL
                             else
                                 li
-                                    a(href='/')= constants.COLUMN_NAME.LOCAL
+                                    a(href='/news/local')= constants.COLUMN_NAME.LOCAL
                 .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
                     block content
         //

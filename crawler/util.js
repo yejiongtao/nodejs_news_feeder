@@ -78,7 +78,8 @@ function saveContent(children, category, uuid, uri, source, title) {
             Source: source,
             Time:  moment().format(datetimeFormat),
             Title: title,
-            Filename: uuid
+            Filename: uuid,
+            Category: category
         }, function (success) {
             if(!success)
                 console.error('failed to insert to database');
