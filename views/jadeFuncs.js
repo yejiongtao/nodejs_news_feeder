@@ -9,5 +9,9 @@ module.exports = {
     news: jade.compileFile(
         path.resolve(__dirname, 'news.jade')),
     article: jade.compileFile(
-        path.resolve(__dirname, 'article.jade'))
+        path.resolve(__dirname, 'article.jade')),
+    login: jade.compileFile(
+        path.resolve(__dirname, 'login.jade')),
+    signup: jade.compileFile(
+        path.resolve(__dirname, 'signup.jade'))
 };

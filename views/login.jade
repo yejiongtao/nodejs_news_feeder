@@ -1,0 +1,31 @@
+extends layout.jade
+block arguments
+    -
+        infoText = argInfo;
+        errorText = argError;
+block additionalHead
+block content
+    h2.sub-header Log In
+    if infoText
+        .alert.alert-info
+            a.close(data-dismiss="alert") &times
+            p= infoText
+    if errorText
+        .alert.alert-danger#alert
+            a.close#close_alert &times
+            p#text_alert= errorText
+    else
+        .alert.alert-danger#alert(hidden)
+            a.close#close_alert &times
+            p#text_alert
+    form(role='form' action='/login' method='post')
+        .form-group
+            label(for='inputUsername') Username
+            input#inputUsername.form-control(type='text'
+            name='username' placeholder='Enter username')
+        .form-group
+            label(for='inputPassword') Password:
+            input#inputPassword.form-control(type='password'
+            name='password' placeholder='Password')
+        button.btn.btn-default(type='submit') Log In
+block additionalScript

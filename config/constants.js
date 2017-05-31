@@ -19,5 +19,9 @@ module.exports = {
         LOCAL: "本地报道"
     },
 
-    datetimeFormat: 'YYYY-MM-DD HH:mm:ss'
+    datetimeFormat: 'YYYY-MM-DD HH:mm:ss',
+
+    cookieKey: 'this is key',
+
+    sessionAge: 1000 * 3600 * 3
 };

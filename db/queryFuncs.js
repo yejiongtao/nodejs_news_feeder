@@ -30,6 +30,20 @@ funcs.selectWithWhere = function (table, field, value, callback) {
     select(sql, callback);
 };
 
+funcs.selectWithMultipleWhere = function (table, fields, values, callback) {
+    var sql = 'select * from ' + table + ' where ';
+    var first = true;
+    for(var i in fields) {
+        var field = fields[i];
+        if(!first)
+            sql += ' and ';
+        sql += '`' + field + '`=?';
+        first = false;
+    }
+    sql = mysql.format(sql, values);
+    select(sql, callback);
+};
+
 funcs.selectWithLimit = function(table, offset, limit, callback) {
     var sql = mysql.format('select * from ' +table+ ' limit ?,?',
         [offset, limit]);

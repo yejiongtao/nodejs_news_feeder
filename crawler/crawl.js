@@ -91,5 +91,3 @@ function crawl(uri, linkPrefix, category, num, source, mainContentIdentifier) {
 module.exports = {
     crawlAll: crawlAll
 };
-
-crawlAll();

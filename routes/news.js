@@ -5,7 +5,8 @@ var queryNews = require('../db/news');
 
 router.get('/sports', function (req, res, next) {
     res.send(jadeFuncNews({
-        argCategory: 'sports'
+        argCategory: 'sports',
+        argLoggedIn: req.isAuthenticated()
     }));
 });
 
@@ -17,7 +18,8 @@ router.get('/sports/data', function (req, res, next) {
 
 router.get('/ent', function (req, res, next) {
     res.send(jadeFuncNews({
-        argCategory: 'ent'
+        argCategory: 'ent',
+        argLoggedIn: req.isAuthenticated()
     }));
 });
 
@@ -29,7 +31,8 @@ router.get('/ent/data', function (req, res, next) {
 
 router.get('/finance', function (req, res, next) {
     res.send(jadeFuncNews({
-        argCategory: 'finance'
+        argCategory: 'finance',
+        argLoggedIn: req.isAuthenticated()
     }));
 });
 
@@ -41,7 +44,8 @@ router.get('/finance/data', function (req, res, next) {
 
 router.get('/local', function (req, res, next) {
     res.send(jadeFuncNews({
-        argCategory: 'local'
+        argCategory: 'local',
+        argLoggedIn: req.isAuthenticated()
     }));
 });
 
@@ -53,7 +57,8 @@ router.get('/local/data', function (req, res, next) {
 
 router.get('/military', function (req, res, next) {
     res.send(jadeFuncNews({
-        argCategory: 'military'
+        argCategory: 'military',
+        argLoggedIn: req.isAuthenticated()
     }));
 });
 
@@ -65,7 +70,8 @@ router.get('/military/data', function (req, res, next) {
 
 router.get('/tech', function (req, res, next) {
     res.send(jadeFuncNews({
-        argCategory: 'tech'
+        argCategory: 'tech',
+        argLoggedIn: req.isAuthenticated()
     }));
 });
 
@@ -77,7 +83,8 @@ router.get('/tech/data', function (req, res, next) {
 
 router.get('/world', function (req, res, next) {
     res.send(jadeFuncNews({
-        argCategory: 'world'
+        argCategory: 'world',
+        argLoggedIn: req.isAuthenticated()
     }));
 });
 

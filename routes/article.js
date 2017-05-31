@@ -13,7 +13,8 @@ router.get('/:category/:id', function (req, res, next) {
             else {
                 var args = {
                     argTitle: req.query.title,
-                    argContent: data
+                    argContent: data,
+                    argLoggedIn: req.isAuthenticated()
                 };
                 if(fs.existsSync(path.resolve(__dirname,
                         '../public/news/' + req.params.category + '/img/done_' + req.params.id + '.jpeg')))
