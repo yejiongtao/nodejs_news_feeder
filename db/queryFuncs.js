@@ -3,6 +3,21 @@ var mysql = require('mysql');
 
 var funcs = {};
 
+funcs.deleteLeavingNew = function(table, count, callback) {
+    var sql = 'DELETE from ' + table +
+        ' where (select count(ID) from (select * from ' + table + ') tmp)> ' + count +
+        ' and ID not in ' +
+        '(select t.ID from (select ID from (select * from ' + table + ') tmp order by Time desc limit 0, ' + count + ') as t)';
+
+    query(sql, function (err) {
+        if(err) {
+            console.error(err.message);
+            callback(false);
+        } else
+            callback(true);
+    })
+};
+
 function select(sql, callback) {
     query(sql, function (err, rows, fields) {
         // rows is an array of objects

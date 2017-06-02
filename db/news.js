@@ -14,7 +14,11 @@ funcs.selectWithURI = function (tableName, uri, callback) {
 };
 
 funcs.selectAllDesc = function (tableName, callback) {
-    queryFuncs.selectAllWithOrder(tableName, 'ID', 'desc', callback);
+    queryFuncs.selectAllWithOrder(tableName, 'Time', 'desc', callback);
+};
+
+funcs.deleteLeavingNew = function(tableName, count, callback) {
+    queryFuncs.deleteLeavingNew(tableName, count, callback);
 };
 
 module.exports = funcs;
