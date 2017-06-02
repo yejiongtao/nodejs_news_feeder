@@ -1,3 +1,5 @@
+var tag = '[CRAWLER]';
+
 function crawlAll() {
     var count = 10;
 
@@ -48,7 +50,7 @@ function crawl(uri, linkPrefix, category, num, source, mainContentIdentifier) {
 
     getDom(uri, function (err, $) {
         if (err) {
-            console.error(err.message, uri);
+            console.error(tag, err.message, uri);
             return;
         }
 
@@ -67,12 +69,12 @@ function crawl(uri, linkPrefix, category, num, source, mainContentIdentifier) {
                     var contentUri = url.resolve(uri, elem.attribs.href);
 
                     if (title.length > 5) {
-                        console.log(source, title);
+                        console.log(tag, source, title);
                         var uuid = uuidV1();
 
                         getDom(contentUri, function (err, $) {
                             if (err) {
-                                console.error(err.message, contentUri);
+                                console.error(tag, err.message, contentUri);
                                 return;
                             }
 
@@ -81,7 +83,7 @@ function crawl(uri, linkPrefix, category, num, source, mainContentIdentifier) {
                                 contentUri, source, title);
                         });
                     } else {
-                        console.log('skipped', source, title);
+                        console.log(tag, 'skipped', source, title);
                     }
                 }
         });

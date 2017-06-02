@@ -9,6 +9,8 @@ var queryNews = require('../db/news');
 var datetimeFormat = require('../config/constants').datetimeFormat;
 var moment = require('moment');
 
+var tag = '[CRAWLER]';
+
 var qGetDom = async.queue(function (obj, cb) {
     request.get({
         uri: obj.uri,
@@ -39,10 +41,10 @@ var qGetImg = async.queue(function (obj, cb) {
         uri: obj.uri,
         timeout: 10000
     }).on('error', function (err) {
-        console.error(err.message, obj.uri);
+        console.error(tag, err.message, obj.uri);
         fs.unlink(filename, function (err) {
             if(err)
-                console.error(err.message);
+                console.error(tag, err.message);
         });
         cb();
     }).pipe(fs.createWriteStream(filename)
@@ -52,7 +54,7 @@ var qGetImg = async.queue(function (obj, cb) {
             fs.rename(filename, path.join(path.dirname(filename), 'done_' + path.basename(filename)),
                 function (err) {
                     if (err)
-                        console.error(err.message);
+                        console.error(tag, err.message);
                 });
     });
 }, 5);
@@ -82,7 +84,7 @@ function saveContent(children, category, uuid, uri, source, title) {
             Category: category
         }, function (success) {
             if(!success)
-                console.error('failed to insert to database');
+                console.error(tag, 'failed to insert to database');
         })
     }
 }

@@ -4,6 +4,8 @@
  * Module dependencies.
  */
 
+require('../crawler/go').go();
+
 var app = require('../app');
 var debug = require('debug')('news-feeder:server');
 var http = require('http');

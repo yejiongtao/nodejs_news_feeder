@@ -10,8 +10,6 @@ var cookieKey = require('./config/constants').cookieKey;
 var sessionAge = require('./config/constants').sessionAge;
 var passport = require('passport');
 
-//todo spawn a crawler here
-
 var connectionPool = require('./db/query').pool;
 require('./config/passport');
 var sessionStore = new MySQLStore({
