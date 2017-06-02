@@ -17,8 +17,6 @@ function deleteObsolete() {
     queryNews.deleteLeavingNew('news_local', count, cb);
 }
 
-deleteObsolete();
-
 module.exports = {
     deleteObsolete: deleteObsolete
 };

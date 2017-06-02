@@ -19,4 +19,15 @@ funcs.insert = function (row, callback) {
     queryFuncs.insert(table, row, callback);
 };
 
+funcs.increment = function(username, colName, callback) {
+    queryFuncs.selectWithWhere(table, 'Username', username, function (rows) {
+        if(rows) {
+            var oldVal = rows[0][colName];
+            queryFuncs.update(table, 'Username', username, colName, oldVal+1, callback);
+        } else {
+            callback(false);
+        }
+    });
+};
+
 module.exports = funcs;

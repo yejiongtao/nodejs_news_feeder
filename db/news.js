@@ -17,6 +17,10 @@ funcs.selectAllDesc = function (tableName, callback) {
     queryFuncs.selectAllWithOrder(tableName, 'Time', 'desc', callback);
 };
 
+funcs.selectWithLimit = function(tableName, limit, callback) {
+    queryFuncs.selectWithLimit(tableName, 0, limit, callback);
+};
+
 funcs.deleteLeavingNew = function(tableName, count, callback) {
     queryFuncs.deleteLeavingNew(tableName, count, callback);
 };
