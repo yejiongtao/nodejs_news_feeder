@@ -1,5 +1,58 @@
 var tag = '[CRAWLER]';
 
+function mkdir() {
+    var fs = require('fs');
+    var path = require('path');
+    var prefix = path.resolve(__dirname, '../public/news');
+
+    if(!fs.existsSync(prefix))
+        fs.mkdirSync(prefix);
+
+    if(!fs.existsSync(path.resolve(prefix, './sports')))
+        fs.mkdirSync(path.resolve(prefix, './sports'));
+    if(!fs.existsSync(path.resolve(prefix, './ent')))
+        fs.mkdirSync(path.resolve(prefix, './ent'));
+    if(!fs.existsSync(path.resolve(prefix, './finance')))
+        fs.mkdirSync(path.resolve(prefix, './finance'));
+    if(!fs.existsSync(path.resolve(prefix, './local')))
+        fs.mkdirSync(path.resolve(prefix, './local'));
+    if(!fs.existsSync(path.resolve(prefix, './world')))
+        fs.mkdirSync(path.resolve(prefix, './world'));
+    if(!fs.existsSync(path.resolve(prefix, './military')))
+        fs.mkdirSync(path.resolve(prefix, './military'));
+    if(!fs.existsSync(path.resolve(prefix, './tech')))
+        fs.mkdirSync(path.resolve(prefix, './tech'));
+
+    if(!fs.existsSync(path.resolve(prefix, './sports/a')))
+        fs.mkdirSync(path.resolve(prefix, './sports/a'));
+    if(!fs.existsSync(path.resolve(prefix, './sports/img')))
+        fs.mkdirSync(path.resolve(prefix, './sports/img'));
+    if(!fs.existsSync(path.resolve(prefix, './ent/a')))
+        fs.mkdirSync(path.resolve(prefix, './ent/a'));
+    if(!fs.existsSync(path.resolve(prefix, './ent/img')))
+        fs.mkdirSync(path.resolve(prefix, './ent/img'));
+    if(!fs.existsSync(path.resolve(prefix, './finance/a')))
+        fs.mkdirSync(path.resolve(prefix, './finance/a'));
+    if(!fs.existsSync(path.resolve(prefix, './finance/img')))
+        fs.mkdirSync(path.resolve(prefix, './finance/img'));
+    if(!fs.existsSync(path.resolve(prefix, './local/a')))
+        fs.mkdirSync(path.resolve(prefix, './local/a'));
+    if(!fs.existsSync(path.resolve(prefix, './local/img')))
+        fs.mkdirSync(path.resolve(prefix, './local/img'));
+    if(!fs.existsSync(path.resolve(prefix, './world/a')))
+        fs.mkdirSync(path.resolve(prefix, './world/a'));
+    if(!fs.existsSync(path.resolve(prefix, './world/img')))
+        fs.mkdirSync(path.resolve(prefix, './world/img'));
+    if(!fs.existsSync(path.resolve(prefix, './military/a')))
+        fs.mkdirSync(path.resolve(prefix, './military/a'));
+    if(!fs.existsSync(path.resolve(prefix, './military/img')))
+        fs.mkdirSync(path.resolve(prefix, './military/img'));
+    if(!fs.existsSync(path.resolve(prefix, './tech/a')))
+        fs.mkdirSync(path.resolve(prefix, './tech/a'));
+    if(!fs.existsSync(path.resolve(prefix, './tech/img')))
+        fs.mkdirSync(path.resolve(prefix, './tech/img'));
+}
+
 function crawlAll() {
     var count = 10;
 
@@ -93,3 +146,5 @@ function crawl(uri, linkPrefix, category, num, source, mainContentIdentifier) {
 module.exports = {
     crawlAll: crawlAll
 };
+
+mkdir();

@@ -24,7 +24,7 @@ html(lang='en')
         meta(name='description', content='')
         meta(name='author', content='yejiongtao')
         link(rel='icon', href='../../favicon.ico')
-        title License Server
+        title News Feeder
         // Bootstrap core CSS
         link(href='/bower_components/bootstrap/dist/css/bootstrap.min.css', rel='stylesheet')
         // Custom styles for this template
@@ -50,6 +50,8 @@ html(lang='en')
                     a.navbar-brand(href='/') News Feeder
                 #navbar.navbar-collapse.collapse
                     ul.nav.navbar-nav.navbar-right
+                        li
+                            a(href='/signup') Sign up
                         li
                             if isLoggedIn
                                 a(href='/logout') Logout

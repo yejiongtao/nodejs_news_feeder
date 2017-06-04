@@ -3,12 +3,17 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./node_modules/bower/bin/bower install && node ./bin/www",
-    "bower": "node ./node_modules/bower/bin/bower",
+    "start": "node ./node_modules/bower/bin/bower --allow-root install && node ./bin/www",
+    "bower": "node ./node_modules/bower/bin/bower --allow-root",
     "db_migrate_create": "node ./node_modules/db-migrate/bin/db-migrate create",
     "db_migrate_up": "node ./node_modules/db-migrate/bin/db-migrate up",
     "db_migrate_down": "node ./node_modules/db-migrate/bin/db-migrate down",
-    "set_charset": "node ./db/setCharset.js"
+    "set_charset": "node ./db/setCharset.js",
+
+    "forever_start": "node ./node_modules/forever/bin/forever start ./bin/www",
+    "forever_list": "node ./node_modules/forever/bin/forever list",
+    "forever_restart": "node ./node_modules/forever/bin/forever restart ./bin/www",
+    "forever_stop": "node ./node_modules/forever/bin/forever stop ./bin/www"
   },
   "dependencies": {
     "async": "^2.1.5",
@@ -23,6 +28,7 @@
     "express": "~4.14.0",
     "express-mysql-session": "^1.2.0",
     "express-session": "^1.15.1",
+    "forever": "^0.15.3",
     "iconv-lite": "^0.4.15",
     "jade": "~1.11.0",
     "moment": "^2.17.1",
