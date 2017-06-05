@@ -13,5 +13,8 @@ module.exports = {
     login: jade.compileFile(
         path.resolve(__dirname, 'login.jade')),
     signup: jade.compileFile(
-        path.resolve(__dirname, 'signup.jade'))
+        path.resolve(__dirname, 'signup.jade')),
+    preferences: jade.compileFile(
+        path.resolve(__dirname, 'preferences.jade')
+    )
 };

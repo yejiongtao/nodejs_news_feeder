@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./node_modules/bower/bin/bower --allow-root install && node ./bin/www",
+    "start": "npm install && node ./node_modules/bower/bin/bower --allow-root install && npm run db_migrate_up && node ./bin/www",
     "bower": "node ./node_modules/bower/bin/bower --allow-root",
     "db_migrate_create": "node ./node_modules/db-migrate/bin/db-migrate create",
     "db_migrate_up": "node ./node_modules/db-migrate/bin/db-migrate up",

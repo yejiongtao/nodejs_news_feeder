@@ -30,6 +30,30 @@ block content
             label(for='inputPassword2') Confirm Password
             input#inputPassword2.form-control(type='password'
             name='password2' placeholder='Enter username again')
+        .form-group
+            label Categories you interested in
+            div
+                label.checkbox-inline
+                    input(type='checkbox' name="categories" value='sports' checked)
+                    | 体育
+                label.checkbox-inline
+                    input(type='checkbox' name="categories" value='ent' checked)
+                    | 娱乐
+                label.checkbox-inline
+                    input(type='checkbox' name="categories" value='tech' checked)
+                    | 科技
+                label.checkbox-inline
+                    input(type='checkbox' name="categories" value='finance' checked)
+                    | 财经
+                label.checkbox-inline
+                    input(type='checkbox' name="categories" value='military' checked)
+                    | 军事
+                label.checkbox-inline
+                    input(type='checkbox' name="categories" value='world' checked)
+                    | 世界
+                label.checkbox-inline
+                    input(type='checkbox' name="categories" value='local' checked)
+                    | 本地
         button.btn.btn-default(type='submit') Sign Up
 block additionalScript
     script(src='/javascripts/validate.min.js')

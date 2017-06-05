@@ -4,6 +4,7 @@ var jadeFuncArticle = require('../views/jadeFuncs').article;
 var fs = require('fs');
 var path = require('path');
 var queryClient = require('../db/client');
+var sendWithPreference = require('./_utils').sendWithPreference;
 
 /* GET home page. */
 router.get('/:category/:id', function (req, res, next) {
@@ -20,7 +21,8 @@ router.get('/:category/:id', function (req, res, next) {
                 if(fs.existsSync(path.resolve(__dirname,
                         '../public/news/' + req.params.category + '/img/done_' + req.params.id + '.jpeg')))
                     args.argImgUri = '/news/' + req.params.category + '/img/done_' + req.params.id + '.jpeg';
-                res.send(jadeFuncArticle(args));
+                // res.send(jadeFuncArticle(args));
+                sendWithPreference(req, res, args, jadeFuncArticle);
             }
         });
     if(req.isAuthenticated()) {

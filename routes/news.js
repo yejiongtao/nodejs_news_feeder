@@ -4,13 +4,19 @@ var jadeFuncNews = require('../views/jadeFuncs').news;
 var queryNews = require('../db/news');
 var queryClient = require('../db/client');
 var async = require('async');
+var sendWithPreference = require('./_utils').sendWithPreference;
 
 router.get('/recommend', function (req, res, next) {
-    res.send(jadeFuncNews({
+    // res.send(jadeFuncNews({
+    //     argCategory: 'recommend',
+    //     argActive: {RECOMMEND: true},
+    //     argLoggedIn: req.isAuthenticated()
+    // }));
+    sendWithPreference(req, res, {
         argCategory: 'recommend',
         argActive: {RECOMMEND: true},
         argLoggedIn: req.isAuthenticated()
-    }));
+    }, jadeFuncNews);
 });
 
 router.get('/recommend/data', function (req, res, next) {
@@ -100,11 +106,16 @@ function recommendHelper(sports, ent, military, world, local, tech, finance, res
 }
 
 router.get('/sports', function (req, res, next) {
-    res.send(jadeFuncNews({
+    // res.send(jadeFuncNews({
+    //     argCategory: 'sports',
+    //     argActive: {SPORTS: true},
+    //     argLoggedIn: req.isAuthenticated()
+    // }));
+    sendWithPreference(req, res, {
         argCategory: 'sports',
         argActive: {SPORTS: true},
         argLoggedIn: req.isAuthenticated()
-    }));
+    }, jadeFuncNews);
 });
 
 router.get('/sports/data', function (req, res, next) {
@@ -114,11 +125,16 @@ router.get('/sports/data', function (req, res, next) {
 });
 
 router.get('/ent', function (req, res, next) {
-    res.send(jadeFuncNews({
+    // res.send(jadeFuncNews({
+    //     argCategory: 'ent',
+    //     argActive: {ENTERTAINMENT: true},
+    //     argLoggedIn: req.isAuthenticated()
+    // }));
+    sendWithPreference(req, res, {
         argCategory: 'ent',
         argActive: {ENTERTAINMENT: true},
         argLoggedIn: req.isAuthenticated()
-    }));
+    }, jadeFuncNews);
 });
 
 router.get('/ent/data', function (req, res, next) {
@@ -128,11 +144,16 @@ router.get('/ent/data', function (req, res, next) {
 });
 
 router.get('/finance', function (req, res, next) {
-    res.send(jadeFuncNews({
+    // res.send(jadeFuncNews({
+    //     argCategory: 'finance',
+    //     argActive: {FINANCE: true},
+    //     argLoggedIn: req.isAuthenticated()
+    // }));
+    sendWithPreference(req, res, {
         argCategory: 'finance',
         argActive: {FINANCE: true},
         argLoggedIn: req.isAuthenticated()
-    }));
+    }, jadeFuncNews);
 });
 
 router.get('/finance/data', function (req, res, next) {
@@ -142,11 +163,16 @@ router.get('/finance/data', function (req, res, next) {
 });
 
 router.get('/local', function (req, res, next) {
-    res.send(jadeFuncNews({
+    // res.send(jadeFuncNews({
+    //     argCategory: 'local',
+    //     argActive: {LOCAL: true},
+    //     argLoggedIn: req.isAuthenticated()
+    // }));
+    sendWithPreference(req, res, {
         argCategory: 'local',
         argActive: {LOCAL: true},
         argLoggedIn: req.isAuthenticated()
-    }));
+    }, jadeFuncNews);
 });
 
 router.get('/local/data', function (req, res, next) {
@@ -156,11 +182,16 @@ router.get('/local/data', function (req, res, next) {
 });
 
 router.get('/military', function (req, res, next) {
-    res.send(jadeFuncNews({
+    // res.send(jadeFuncNews({
+    //     argCategory: 'military',
+    //     argActive: {MILITARY: true},
+    //     argLoggedIn: req.isAuthenticated()
+    // }));
+    sendWithPreference(req, res, {
         argCategory: 'military',
         argActive: {MILITARY: true},
         argLoggedIn: req.isAuthenticated()
-    }));
+    }, jadeFuncNews);
 });
 
 router.get('/military/data', function (req, res, next) {
@@ -170,11 +201,16 @@ router.get('/military/data', function (req, res, next) {
 });
 
 router.get('/tech', function (req, res, next) {
-    res.send(jadeFuncNews({
+    // res.send(jadeFuncNews({
+    //     argCategory: 'tech',
+    //     argActive: {TECHNOLOGY: true},
+    //     argLoggedIn: req.isAuthenticated()
+    // }));
+    sendWithPreference(req, res, {
         argCategory: 'tech',
         argActive: {TECHNOLOGY: true},
         argLoggedIn: req.isAuthenticated()
-    }));
+    }, jadeFuncNews);
 });
 
 router.get('/tech/data', function (req, res, next) {
@@ -184,11 +220,16 @@ router.get('/tech/data', function (req, res, next) {
 });
 
 router.get('/world', function (req, res, next) {
-    res.send(jadeFuncNews({
+    // res.send(jadeFuncNews({
+    //     argCategory: 'world',
+    //     argActive: {WORLD: true},
+    //     argLoggedIn: req.isAuthenticated()
+    // }));
+    sendWithPreference(req, res, {
         argCategory: 'world',
         argActive: {WORLD: true},
         argLoggedIn: req.isAuthenticated()
-    }));
+    }, jadeFuncNews);
 });
 
 router.get('/world/data', function (req, res, next) {

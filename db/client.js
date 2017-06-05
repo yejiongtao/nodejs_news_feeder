@@ -30,4 +30,8 @@ funcs.increment = function(username, colName, callback) {
     });
 };
 
+funcs.update = function (whereField, whereVal, field, newVal, callback) {
+    queryFuncs.update(table, whereField, whereVal, field, newVal, callback);
+};
+
 module.exports = funcs;

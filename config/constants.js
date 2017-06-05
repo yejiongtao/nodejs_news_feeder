@@ -18,6 +18,15 @@ module.exports = {
         WORLD: "世界新闻",
         LOCAL: "本地报道"
     },
+    CATEGORY_MASK: {
+        SPORTS: 1<<0,
+        ENTERTAINMENT: 1<<1,
+        TECHNOLOGY: 1<<2,
+        FINANCE: 1<<3,
+        MILITARY: 1<<4,
+        WORLD: 1<<5,
+        LOCAL: 1<<6
+    },
 
     datetimeFormat: 'YYYY-MM-DD HH:mm:ss',
 

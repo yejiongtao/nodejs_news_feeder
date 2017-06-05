@@ -1,0 +1,69 @@
+extends layout.jade
+block arguments
+    -
+        success = argSuccess;
+        fail = argFail;
+block additionalHead
+block content
+    h2.sub-header Preferences
+    if success
+        .alert.alert-info
+            a.close(data-dismiss="alert") &times
+            p Saved Successfully.
+    if fail
+        .alert.alert-danger
+            a.close#close_alert &times
+            p Failed to save. Try again.
+    form(role='form' action='/pref' method='post')
+        .form-group
+            .checkbox
+                label
+                    if preference.ALL || preference.SPORTS
+                        input(type='checkbox' name="categories" value='sports' checked)
+                    else
+                        input(type='checkbox' name="categories" value='sports')
+                    | 体育新闻
+            .checkbox
+                label
+                    if preference.ALL || preference.ENTERTAINMENT
+                        input(type='checkbox' name="categories" value='ent' checked)
+                    else
+                        input(type='checkbox' name="categories" value='ent')
+                    | 娱乐快报
+            .checkbox
+                label
+                    if preference.ALL || preference.TECHNOLOGY
+                        input(type='checkbox' name="categories" value='tech' checked)
+                    else
+                        input(type='checkbox' name="categories" value='tech')
+                    | 科技前沿
+            .checkbox
+                label
+                    if preference.ALL || preference.FINANCE
+                        input(type='checkbox' name="categories" value='finance' checked)
+                    else
+                        input(type='checkbox' name="categories" value='finance')
+                    | 财经讯息
+            .checkbox
+                label
+                    if preference.ALL || preference.MILITARY
+                        input(type='checkbox' name="categories" value='military' checked)
+                    else
+                        input(type='checkbox' name="categories" value='military')
+                    | 军事动态
+            .checkbox
+                label
+                    if preference.ALL || preference.WORLD
+                        input(type='checkbox' name="categories" value='world' checked)
+                    else
+                        input(type='checkbox' name="categories" value='world')
+                    | 世界新闻
+            .checkbox
+                label
+                    if preference.ALL || preference.LOCAL
+                        input(type='checkbox' name="categories" value='local' checked)
+                    else
+                        input(type='checkbox' name="categories" value='local')
+                    | 本地报道
+        button.btn.btn-default(type='submit') Save
+block additionalScript

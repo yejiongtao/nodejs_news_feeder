@@ -57,6 +57,9 @@ html(lang='en')
                                 a(href='/logout') Logout
                             else
                                 a(href='/login') Login
+                        if isLoggedIn
+                            li
+                                a(href='/pref') Preferences
                     //form.navbar-form.navbar-right
                     //    input.form-control(type='text', placeholder='Search...')
         .container-fluid
